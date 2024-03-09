@@ -1,12 +1,8 @@
-import {Get_All_Books,Error} from '../Type.js'
+import {Get_All_Books,Error,Insert_books} from '../Type.js';
 //import baseUrl from '../../API/URl.jsx';
-//import useGetData from '../../Hooks/useGet.js';
-//import useInseertDatawithImage from '../../Hooks/useInsertData.js';
-
-
-import baseUrl from '../../API/baseUrl.jsx';
-
-
+import useGetData from '../../HOOKS/useGet.js';
+import useInsertDatawithImage from '../../HOOKS/useInsertData.js';
+//import baseUrl from '../../API/baseUrl.jsx';
 
 
   export  const getAllBooks=()=>async(dispatch)=>{
@@ -15,8 +11,8 @@ import baseUrl from '../../API/baseUrl.jsx';
 
 try{
 
-    const response= await baseUrl.get('/api/v1/books');
-    console.log(response.data);
+    const response= await useGetData.get('/api/v1/books');
+    console.log(response);
    // const respone=await useGetData('/api/v1/books');
 
   
@@ -43,13 +39,13 @@ export default getAllBooks;
 
 
 
-/*
+
 
 export  const createBooks=(formData)=>async(dispatch)=>{
 
     try{
     
-      const response= await useInseertDatawithImage.get('/api/v1/books',formData);
+      const response= await useInsertDatawithImage.get('/api/v1/books',formData);
       console.log(response);
       dispatch( {
     
@@ -69,6 +65,7 @@ export  const createBooks=(formData)=>async(dispatch)=>{
     
     }
     
+    /*
     export  const getOneBook=(id)=>async(dispatch)=>{
 
       try{

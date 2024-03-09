@@ -1,10 +1,12 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import BookDescription from "./BookDescription";
-//import { useDispatch,useSelector } from 'react-redux';
+
 const BookDetail = ()=> {
 
-   // const dispatch=useDispatch();
+  
+
+
     return (
       <div >
        

@@ -1,16 +1,57 @@
-import React, { useEffect /*{useState }*/} from "react";
+import React, {useState } from "react";
 import avatar from '../src/avatar.png';
 import './AdminAddBook.css';
-//import { useDispatch,useSelector } from 'react-redux';
 //import {getAllBooks} from "./Redux/Action/BooksAction";
-//import {useDispatch} from 'react-redux';
-//import {createBooks}from '../src/redux/actions/booksAction'
+import {useDispatch} from 'react-redux';
+import {createBooks}from '../src/Redux/Action/BooksAction'
 
 
 const AdminAddBook=()=>{
+
+    const[cover_image,setCover_image] = useState(avatar);
+    const[title,setTitle] = useState ('');
+    const[author,setAuthor] = useState('');
+    const[selectedFile,setSelectedFile] = useState(null);
+    const dispatch = useDispatch();
+
+    const onImageChange=(event)=>{
+
+        if(event.target.files&&event.target.files[0])
+        {
+
+            setCover_image(URL.createObjectURL(event.target.files[0]));
+            setSelectedFile(event.target.files[0])
+        }
+}
+
+
+const handleSubmit=async(event)=>{
+
+    event.preventDefault();
+    const formData=new FormData();
+    formData.append("cover_image",selectedFile);
+    formData.append("title",title);
+    formData.append("author",author);
+    await dispatch(createBooks(formData));
+    setTitle('');
+    setAuthor('');
+    setCover_image(avatar);
+
+
+
+  /*  const formData=new FormData();
+    formData.append("img",selectedFile)
+    formData.append("title",title)
+    formData.append("author",author)
+
+    setLoading(true)
+   await dispatch(createBooks(formData))
+    setLoading(false)*/
+}
+    
     /*
     const dispatch = useDispatch();
- const[img,setImg] = useState(avatar);
+
  const[title,setTitle] = useState('');
  const[author,setAuthor] = useState('');
  const[selectedFile,setSelectedFile] = useState(null);
@@ -87,7 +128,7 @@ dispatch(getAllBooks());
                    
                     <label htmlFor='upload-photo'>
                     <img 
-                    src={avatar}
+                    src={cover_image}
                     alt='img'
                     height='100px'
                     width='100px'
@@ -97,7 +138,7 @@ dispatch(getAllBooks());
                     <input
                         type='file'
                         name='photo'
-                      //  onChange={onImageChange}
+                        onChange={onImageChange}
                         id='upload-photo'
                        />
                       
@@ -110,8 +151,8 @@ dispatch(getAllBooks());
             
                 <label htmlFor="exampleFormControlInput1" className="form-label">BOOK TITLE</label>
                 <input type="text" className="form-control"  placeholder="add book name "
-                 // onChange={(e)=>setTitle(e.target.value)}
-               //   value={title}
+                  onChange={(e)=>setTitle(e.target.value)}
+                 value={title}
                 />
             </div>
 
@@ -120,11 +161,11 @@ dispatch(getAllBooks());
             
                 <label htmlFor="exampleFormControlInput1" className="form-label">BOOK Author</label>
                 <input type="text" className="form-control"  placeholder="add book author "
-              //  onChange={(e)=>setAuthor(e.target.value)}
-              //  value={author}
+                onChange={(e)=>setAuthor(e.target.value)}
+               value={author}
                 />
             </div>
-            <button /*onClick={handleSubmit}*/ type="button" className="btn btn-dark">Save</button>
+            <button onClick={handleSubmit} type="button" className="btn btn-dark">Save</button>
         </div>
     )
 

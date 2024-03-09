@@ -1,4 +1,4 @@
-import {Get_All_Books} from '../Type.js'
+import {Get_All_Books,Error,Insert_books} from '../Type.js'
 
 const inital={
    // booksReducer:[],
@@ -17,6 +17,11 @@ const booksReducer= (state=inital,action)=>{
                 AllBooks:action.payload,
                 loading:false,        
                }
+               case Insert_books: 
+            return{  
+                
+                booksReducer:action.payload,
+                loading:false ,} 
                case Error: 
                return {
                    loading:true,

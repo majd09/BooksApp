@@ -1,4 +1,4 @@
-import {Get_All_Books,Error,Insert_books} from '../Type.js';
+import {Get_All_Books,Error,Insert_books,GetOneBookDetails} from '../Type.js';
 //import baseUrl from '../../API/URl.jsx';
 import useGetData from '../../HOOKS/useGet.js';
 import useInsertDatawithImage from '../../HOOKS/useInsertData.js';
@@ -65,7 +65,7 @@ export  const createBooks=(formData)=>async(dispatch)=>{
     
     }
     
-    /*
+    
     export  const getOneBook=(id)=>async(dispatch)=>{
 
       try{
@@ -74,7 +74,7 @@ export  const createBooks=(formData)=>async(dispatch)=>{
         console.log(response);
         dispatch( {
       
-          type:get_Book_Details,
+          type:GetOneBookDetails,
           payload:response,
         })
       }
@@ -90,4 +90,4 @@ export  const createBooks=(formData)=>async(dispatch)=>{
       
       }
       
-  */
+  

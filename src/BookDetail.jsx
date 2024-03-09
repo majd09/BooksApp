@@ -1,16 +1,16 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import BookDescription from "./BookDescription";
-
+import { useParams } from "react-router-dom";
 const BookDetail = ()=> {
 
   
-
+  const {id}=useParams();
 
     return (
       <div >
        
-      <BookDescription/>
+      <BookDescription id={id}/>
       </div>
     );
   }
